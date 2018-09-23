@@ -1,0 +1,48 @@
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-5 mb-5">
+        <h1 class="text-center">@ViewData["Title"]</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <div class="card">
+            <table class="table table-hover text-center">
+                <thead class="bg-info text-white">
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Image</th>
+                        <th>Product Name</th>
+                        <th>Short Description</th>
+                        <th>Price</th>
+                        <th>Weight</th>
+                        <th>Quantity</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var p in ViewBag.products)
+                    {
+                        <tr>
+                        <td>@p.product_id</td>
+                        <td><img src="~/images/@p.image" alt="Product"></td>
+                        <td>@p.name</td>
+                        <td>@p.short_desc</td>
+                        <td>@p.price</td>
+                        <td>@p.weight</td>
+                        <td>@p.qty</td>
+                        <td>
+                            <a href="Product/@p.product_id" class="btn btn-round btn-info">Add Category</a>
+                            <a href="" class="btn btn-round btn-warning">Edit</a>
+                            <a href="DeleteProduct/@p.product_id" class="btn btn-round btn-danger">Delete</a>
+                        </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Message Board";
+}
+
+<div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-5 mb-5">
+		<div class="card">
+        			<table class="table table-hover text-center">
+						<thead class="thead-dark">
+							<tr>
+								<th>ID</th>
+								<th>User</th>
+								<th>Message</th>
+								<th>Comments</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+                            @foreach (var m in ViewBag.messages)
+                            {
+                                <tr>
+									<td>@m.message_id</td>
+									<td>@m.Users.first_name @m.Users.last_name</td>
+									<td>@m.message</td>
+									<td><a href="Message/@m.message_id" class="btn btn-round btn-success">Comments: @m.Comments.Count</a></td>
+									<td>
+                                        <a href="" class="btn btn-round btn-warning">Edit</a>
+                                        <a href="DeleteMessage/@m.message_id" class="btn btn-round btn-danger">Delete</a>
+                                    </td>
+								</tr>   
+                            }
+						</tbody>
+					</table>
+		</div>
+	</div>
+    </div>
+
+    <div class="row">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+            <a asp-action="AddMessage" asp-controller="Home" class="btn btn-info btn-lg">Add Message</a>
+        </div>
+    </div>

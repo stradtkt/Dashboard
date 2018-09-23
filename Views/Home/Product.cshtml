@@ -1,0 +1,33 @@
+@model Dashboard.Models.Product
+@{
+    ViewData["Title"] = "Add Products To Categories";
+}
+
+<div class="row">
+    <div class="col-md-12 mt-5 mb-5">
+        <div class="card">
+            <h3 class="text-center">@ViewBag.product.name</h3>
+        </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-6">
+        <form asp-action="LinkProductToCategory" asp-controller="Home" method="POST">
+            <input type="hidden" name="product_id" value="@ViewBag.product.product_id">
+            <select name="category_id" class="form-control">
+                @foreach (var c in ViewBag.categories)
+                {
+                    <option value="@c.category_id">@c.name</option>
+                }
+            </select>
+            <input type="submit" value="Add Category" class="btn btn-success btn-round">
+        </form>
+    </div>
+    <div class="col-md-6">
+        <h3 class="text-center">Categories</h3>
+            @foreach(var c in ViewBag.product.ProductsCategories)
+            {
+                <p class="text-center">@c.Categories.name</p>
+            }
+    </div>
+</div>

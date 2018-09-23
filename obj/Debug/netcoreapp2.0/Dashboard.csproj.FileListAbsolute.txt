@@ -1,0 +1,11 @@
+E:\csharp\KevinStradtman\Dashboard\bin\Debug\netcoreapp2.0\Dashboard.deps.json
+E:\csharp\KevinStradtman\Dashboard\bin\Debug\netcoreapp2.0\Dashboard.runtimeconfig.json
+E:\csharp\KevinStradtman\Dashboard\bin\Debug\netcoreapp2.0\Dashboard.runtimeconfig.dev.json
+E:\csharp\KevinStradtman\Dashboard\bin\Debug\netcoreapp2.0\Dashboard.dll
+E:\csharp\KevinStradtman\Dashboard\bin\Debug\netcoreapp2.0\Dashboard.pdb
+E:\csharp\KevinStradtman\Dashboard\obj\Debug\netcoreapp2.0\Dashboard.csprojResolveAssemblyReference.cache
+E:\csharp\KevinStradtman\Dashboard\obj\Debug\netcoreapp2.0\Dashboard.csproj.CoreCompileInputs.cache
+E:\csharp\KevinStradtman\Dashboard\obj\Debug\netcoreapp2.0\Dashboard.AssemblyInfoInputs.cache
+E:\csharp\KevinStradtman\Dashboard\obj\Debug\netcoreapp2.0\Dashboard.AssemblyInfo.cs
+E:\csharp\KevinStradtman\Dashboard\obj\Debug\netcoreapp2.0\Dashboard.dll
+E:\csharp\KevinStradtman\Dashboard\obj\Debug\netcoreapp2.0\Dashboard.pdb

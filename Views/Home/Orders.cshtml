@@ -1,0 +1,40 @@
+@{
+    ViewData["Title"] = "Orders";
+}
+
+<div class="row">
+    <div class="col-12 colsm-12 col-md-12 col-lg-12 col-xl-12 mt-5 mb-5">
+        <h1 class="text-center">@ViewData["Title"]</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <div class="card">
+        <table class="table table-hover text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Customer Name</th>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Date</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var o in ViewBag.orders)
+                {
+                    <tr>
+                        <td>@o.order_id</td>
+                        <td>@o.OrdersProducts.Products.name</td>
+                        <td>@o.qty</td>
+                        <td>@o.created_at</td>
+                        <td>@o.Users.address @o.Users.city @o.Users.state @o.Users.zip</td>
+                    </tr>   
+                }
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
