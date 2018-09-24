@@ -1,0 +1,42 @@
+@{
+    ViewData["Title"] = "User Profile";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h1 class="text-center">@ViewBag.user.first_name @ViewBag.user.last_name</h1>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+        <div class="card-header">
+            <h1 class="text-center">Location</h1>
+        </div>
+        <div class="card-body">
+            <p class="lead text-center card-text">
+              <span>@ViewBag.user.address @ViewBag.user.city,</span><br>
+              <span>@ViewBag.user.state, @ViewBag.user.zip</span> 
+            </p>
+        </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+        <div class="card-header">
+            <h1 class="text-center">Info</h1>
+        </div>
+        <div class="card-body">
+            <p class="lead text-center card-text">
+                <span><strong>Phone: </strong> @ViewBag.user.phone</span><br>
+                <span><strong>Email: </strong>@ViewBag.user.email</span><br>
+                <span><strong>Messages: </strong> @ViewBag.user.Messages.Count</span><br>
+                <span><strong>Comments: </strong> @ViewBag.user.Comments.Count</span><br>
+            </p>
+        </div>
+        </div>
+    </div>
+</div>

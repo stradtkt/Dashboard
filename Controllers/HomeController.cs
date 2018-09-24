@@ -29,12 +29,14 @@ namespace Dashboard.Controllers
         [HttpGet("")]
         public IActionResult Register()
         {
+            ViewBag.user = ActiveUser;
             return View();
         }
 
         [HttpGet("login")]
         public IActionResult Login()
         {
+            ViewBag.user = ActiveUser;
             return View();
         }
 
@@ -129,6 +131,7 @@ namespace Dashboard.Controllers
             ViewBag.orders = orders;
             ViewBag.products = products;
             ViewBag.users = users;
+            ViewBag.user = ActiveUser;
             return View();
         }
 //***********************************Products******************************************* */
@@ -139,6 +142,7 @@ namespace Dashboard.Controllers
             {
                 return RedirectToAction("Login");
             }
+            ViewBag.user = ActiveUser;
             return View();
         }
         [HttpGet("Products")]
@@ -150,6 +154,7 @@ namespace Dashboard.Controllers
             }
             List<Product> products = _dContext.products.ToList();
             ViewBag.products = products;
+            ViewBag.user = ActiveUser;
             return View();
         }
         [HttpPost("ProcessProduct")]
@@ -195,6 +200,7 @@ namespace Dashboard.Controllers
             List<Category> categories = _dContext.categories.ToList();
             ViewBag.product = product;
             ViewBag.categories = categories;
+            ViewBag.user = ActiveUser;
             return View();
         }
 
@@ -226,6 +232,7 @@ namespace Dashboard.Controllers
                 .Include(m => m.Messages)
                 .Include(c => c.Comments)
                 .ToList();
+            ViewBag.user = ActiveUser;
             ViewBag.users = users;
             return View();
         }
@@ -233,7 +240,11 @@ namespace Dashboard.Controllers
         [HttpGet("UserProfile/{user_id}")]
         public IActionResult UserProfile(int user_id) 
         {
-            User user = _dContext.users.Where(u => u.user_id == user_id).SingleOrDefault();
+            User user = _dContext.users
+                .Include(m => m.Messages)
+                .Include(c => c.Comments)
+                .Where(u => u.user_id == user_id)
+                .SingleOrDefault();
             ViewBag.user = user;
             return View();
         }
@@ -245,6 +256,30 @@ namespace Dashboard.Controllers
             _dContext.SaveChanges();
             return RedirectToAction("Users");
         }
+
+        [HttpGet("EditUser/{user_id}")]
+        public IActionResult EditUser(int user_id)
+        {
+            User user = _dContext.users.Where(u => u.user_id == user_id).SingleOrDefault();
+            ViewBag.theUser = user;
+            return View();
+        }
+        [Route("{user_id}/ProcessEditUser")]
+        public IActionResult ProcessEditUser(int user_id, string first_name, string last_name, string address, string city, string state, string zip, string phone, string email)
+        {
+            User user = _dContext.users.Where(u => u.user_id == user_id).SingleOrDefault();
+            user.first_name = first_name;
+            user.last_name = last_name;
+            user.address = address;
+            user.city = city;
+            user.state = state;
+            user.zip = zip;
+            user.phone = phone;
+            user.email = email;
+            _dContext.SaveChanges();
+            return RedirectToAction("Users");
+        }
+
 
 
 //****************************************************Messages & Comments*************************************************************** */
@@ -262,11 +297,13 @@ namespace Dashboard.Controllers
                 .ThenInclude(cu => cu.Users)
                 .ToList();
             ViewBag.messages = messages;
+            ViewBag.user = ActiveUser;
             return View();
         }
         [HttpGet("AddMessage")]
         public IActionResult AddMessage()
         {
+            ViewBag.user = ActiveUser;
             return View();
         }
         [HttpPost("ProcessMessage")]
@@ -303,6 +340,7 @@ namespace Dashboard.Controllers
                 .Where(m => m.message_id == message_id)
                 .SingleOrDefault();
             ViewBag.message = message;
+            ViewBag.user = ActiveUser;
             return View();
         }
 
@@ -354,12 +392,15 @@ namespace Dashboard.Controllers
                 .Include(op => op.OrdersProducts)
                 .ThenInclude(p => p.Products)
                 .ToList();
+            ViewBag.orders = orders;
+            ViewBag.user = ActiveUser;
             return View();
         }
 
         [HttpGet("AddOrder")]
         public IActionResult AddOrder()
         {
+            ViewBag.user = ActiveUser;
             return View();
         }
 
